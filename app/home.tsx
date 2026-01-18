@@ -1,13 +1,15 @@
+import { useRouter } from "expo-router";
 import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function HomeScreen() {
+    const router = useRouter();
     return (
       <SafeAreaView style={styles.safe}>
         <ImageBackground
@@ -30,30 +32,48 @@ import { SafeAreaView } from "react-native-safe-area-context";
   
           {/* Grid */}
           <View style={styles.grid}>
-            <DashboardCard emoji="✨" label="Suggest Outfit" />
-            <DashboardCard emoji="💬" label="AI Stylist" />
-            <DashboardCard emoji="🚪" label="Virtual Closet" />
-            <DashboardCard emoji="📏" label="Measurements" />
-            <DashboardCard emoji="🧍" label="Avatar" />
+          <DashboardCard
+            emoji="✨"
+            label="Suggest Outfit"
+            onPress={() => router.push("/closet")}
+          />
+
+          <DashboardCard
+            emoji="💬"
+            label="AI Stylist"
+            onPress={() => router.push("/chat")}
+          />
+
+          <DashboardCard
+            emoji="🚪"
+            label="Virtual Closet"
+            onPress={() => router.push("/closet")}
+          />
+
+          <DashboardCard
+            emoji="📏"
+            label="Measurements"
+            onPress={() => router.push("/measure")}
+          />
+
+          <DashboardCard
+            emoji="🧍"
+            label="Avatar"
+            onPress={() => router.push("/avatar")}
+          />
           </View>
         </ImageBackground>
       </SafeAreaView>
     );
   }
-  function DashboardCard({
-    emoji,
-    label,
-  }: {
-    emoji: string;
-    label: string;
-  }) {
-    return (
-      <Pressable style={styles.card}>
-        <Text style={styles.cardEmoji}>{emoji}</Text>
-        <Text style={styles.cardText}>{label}</Text>
-      </Pressable>
-    );
-  }
+  function DashboardCard({ emoji, label, onPress }: any) {
+  return (
+    <Pressable style={styles.card} onPress={onPress}>
+      <Text style={styles.cardEmoji}>{emoji}</Text>
+      <Text style={styles.cardText}>{label}</Text>
+    </Pressable>
+  );
+}
   const styles = StyleSheet.create({
     safe: {
       flex: 1,

@@ -1,12 +1,14 @@
+import { useRouter } from "expo-router";
 import {
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function MeasurementResultsScreen() {
+    const router = useRouter();
     // UI-only dummy results
     const resultsText =
       "Shoulders: 45 cm\nChest: 98 cm\nWaist: 82 cm";
@@ -29,15 +31,21 @@ import { SafeAreaView } from "react-native-safe-area-context";
           </View>
   
           {/* Buttons */}
-          <Pressable style={styles.primaryButton}>
+          <Pressable
+            style={styles.primaryButton}
+            onPress={() => router.push("/chat")}
+          >
             <Text style={styles.primaryText}>Get AI Fashion Tips</Text>
           </Pressable>
-  
-          <Pressable style={styles.outlinedButton}>
+
+          <Pressable
+            style={styles.outlinedButton}
+            onPress={() => router.replace("/measure")}
+          >
             <Text style={styles.outlinedText}>Measure Again</Text>
           </Pressable>
-  
-          <Pressable style={styles.textButton}>
+
+          <Pressable onPress={() => router.replace("/home")}>
             <Text style={styles.textButtonText}>Home</Text>
           </Pressable>
         </View>

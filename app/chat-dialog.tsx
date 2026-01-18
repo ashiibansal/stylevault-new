@@ -1,14 +1,16 @@
+import { useRouter } from "expo-router";
 import {
-    FlatList,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function ChatbotDialogScreen() {
+    const router = useRouter();
     // UI-only dummy messages
     const messages = [
       { id: "1", sender: "bot", text: "Hi! I’m the StyleVault chatbot 🤖" },
@@ -22,7 +24,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
           <View style={styles.header}>
             <Text style={styles.title}>StyleVault Chatbot</Text>
   
-            <Pressable style={styles.backButton}>
+            <Pressable
+              style={styles.backButton}
+              onPress={() => router.back()}
+            >
               <Text style={styles.backText}>Back</Text>
             </Pressable>
           </View>

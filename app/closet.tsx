@@ -1,15 +1,17 @@
+import { useRouter } from "expo-router";
 import {
-    ActivityIndicator,
-    FlatList,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function ClosetScreen() {
     // UI-only dummy state
+    const router = useRouter();
     const isLoading = false;
   
     return (
@@ -39,12 +41,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
         </View>
   
         {/* FAB – Add Clothing (Bottom Right) */}
-        <Pressable style={[styles.fab, styles.fabRight]}>
+        <Pressable
+          style={[styles.fab, styles.fabRight]}
+          onPress={() => router.push("/add-clothing")}
+        >
           <Text style={styles.fabIcon}>＋</Text>
         </Pressable>
-  
-        {/* FAB – Try Avatar (Bottom Left) */}
-        <Pressable style={[styles.fab, styles.fabLeft]}>
+
+        <Pressable
+          style={[styles.fab, styles.fabLeft]}
+          onPress={() => router.push("/avatar")}
+        >
           <Text style={styles.fabIcon}>🧍</Text>
         </Pressable>
       </SafeAreaView>

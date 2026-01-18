@@ -1,12 +1,14 @@
+import { useRouter } from "expo-router";
 import {
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function BodyMeasurementScreen() {
+    const router = useRouter();
     return (
       <SafeAreaView style={styles.safe}>
         {/* Toolbar */}
@@ -29,11 +31,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
   
         {/* Bottom Action Card */}
         <View style={styles.bottomCard}>
-          <Pressable style={styles.startButton}>
-            <Text style={styles.startButtonText}>
-              Start Measurement
-            </Text>
-          </Pressable>
+        <Pressable
+          style={styles.startButton}
+          onPress={() => router.push("/results")}
+        >
+          <Text style={styles.startButtonText}>Start Measurement</Text>
+        </Pressable>
         </View>
       </SafeAreaView>
     );
