@@ -1,10 +1,10 @@
 import {
-    FlatList,
-    Image,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
@@ -27,7 +27,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
           <View style={styles.avatarContainer}>
             {/* Base Avatar */}
             <Image
-              source={require("../assets/images/avatar_base.png")}
+              source={require("@/assets/images/avatar_base.png")}
               style={styles.avatar}
               resizeMode="contain"
             />
@@ -35,7 +35,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
             {/* Clothing Overlay */}
             {showOverlay && (
               <Image
-                source={require("../assets/images/clothing_overlay.png")}
+                source={require("@/assets/images/clothing_overlay.png")}
                 style={styles.avatar}
                 resizeMode="contain"
               />

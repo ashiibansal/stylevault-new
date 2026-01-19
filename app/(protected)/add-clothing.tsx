@@ -1,11 +1,11 @@
 import {
-    ActivityIndicator,
-    Image,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
   
@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
           {/* Image Preview */}
           <View style={styles.imageWrapper}>
             <Image
-              source={require("../assets/images/placeholder.png")}
+              source={require("@/assets/images/placeholder.png")}
               style={styles.image}
               resizeMode="cover"
             />

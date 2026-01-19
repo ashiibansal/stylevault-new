@@ -1,5 +1,8 @@
+import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import {
+  Alert,
   ImageBackground,
   Pressable,
   StyleSheet,
@@ -10,8 +13,27 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen() {
+  const { login } = useAuth();
   const router = useRouter();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter email and password");
+      return;
+    }
+  
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      Alert.alert("Error", "Please enter a valid email address");
+      return;
+    }
+  
+    await login(); // ✅ persisted login
+    router.replace("/home");
+  };
   return (
     <SafeAreaView style={styles.safe}>
       <ImageBackground
@@ -28,6 +50,8 @@ export default function LoginScreen() {
               placeholderTextColor="#999"
               keyboardType="email-address"
               style={styles.input}
+              value={email}
+              onChangeText={setEmail}
             />
 
             <TextInput
@@ -35,11 +59,13 @@ export default function LoginScreen() {
               placeholderTextColor="#999"
               secureTextEntry
               style={[styles.input, { marginTop: 16 }]}
+              value={password}
+              onChangeText={setPassword}
             />
 
             <Pressable
               style={styles.loginButton}
-              onPress={() => router.push("/home")}
+              onPress={handleLogin}
             >
               <Text style={styles.loginText}>Login</Text>
             </Pressable>
@@ -57,6 +83,8 @@ export default function LoginScreen() {
     </SafeAreaView>
   );
 }
+
+/* styles unchanged */
   
   /* 👇 PART 3 GOES HERE (VERY IMPORTANT) */
   const styles = StyleSheet.create({
